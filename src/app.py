@@ -29,22 +29,19 @@ def transform_features(df):
     return df[['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed',
        'Loan_Amount_Term', 'Credit_History', 'Property_Area', 'Total_Income_log','LoanAmount_log']]
 
-model = pickle.load(open('/Users/silvh/OneDrive/lighthouse/projects/mini-project-IV/model_random_forest-11-04.sav', "rb" ) )
+model = pickle.load(open('/Users/silvh/OneDrive/lighthouse/projects/mini-project-IV/model_logistic_regression.sav', "rb" ) )
 
 class predict(Resource):
     def post(self):
         json_data = request.get_json()
         df = pd.DataFrame(json_data.values(), index=json_data.keys()).transpose()
-        # getting predictions from our model.
-        # it is much simpler because we used pipelines during development
+
         res = model.predict(df)
-        # show the text
+
         res = res.tolist()
-        res[0] = f'Model prediction: {res[0]}.'
+
         if res == ['Y']:
             res.append(dict({'Meaning of prediction': 'Loan application approval. ☺'}))
-        else: 
-            res.append(dict({'Meaning of prediction': 'Loan application denial. :( '}))
 
         return res
 
