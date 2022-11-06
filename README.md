@@ -42,7 +42,7 @@ Ratio data were not normally distributed; they were skewed to the right.
 
 # Process
 
-The work for this project was performed in the `instructions.ipynb` notebook.
+The work for this project was performed in the `instructions.ipynb` notebook. Some custom functions are in saved in the `src` folder.
 
 ## Data exploration
 Using histograms, box plots, and bar charts, I examined the differences between approved applications and non-approved applications in regards to the various features of interest.
