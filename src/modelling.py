@@ -20,7 +20,7 @@ def evaluate_grid_classifier(search_result, X_test, y_test, X_train, y_train, po
     best_model = search_result.best_estimator_
 
     y_pred = best_model.predict(X_test)
-    # print(y_pred)
+
     y_pred_train = best_model.predict(X_train)
 
     # Metrics for test data
