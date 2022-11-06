@@ -80,8 +80,8 @@ Due to the warnings associated with iteration 2, I returned to the same pipeline
 <br><br>
 
 # Results
-
-Best model parameters from randomized search: `{'classifier__class_weight': 'balanced', 'classifier__max_depth': 5, 'classifier__n_estimators': 200}`
+## Random Forest Classifier
+Best random forest classifier parameters from randomized search: `{'classifier__class_weight': 'balanced', 'classifier__max_depth': 5, 'classifier__n_estimators': 200}`
 
 
 Metric | Test data	| Training data		| Difference
@@ -90,8 +90,10 @@ Accuracy: 	| 78.05%		| 81.26%		| -3.21%
 Recall: 	| 48.48%		| 61.01%		| -12.52%
 Precision: 	| 61.54%		| 76.38%		| -14.84%
 F1: 		| 54.24%		| 67.83%		| -13.59%
+![confusion matrix: random forest](./images/confusion_matrix_forest.png)
 
-Best model parameters from grid search: `{'classifier__C': 0.008, 'classifier__class_weight': 'balanced', 'classifier__solver': 'liblinear'}`
+## Logistic Regression Classifier
+Best logistic classifier parameters from grid search: `{'classifier__C': 0.008, 'classifier__class_weight': 'balanced', 'classifier__solver': 'liblinear'}`
 
 Metric | Test data| Training data		| Difference
 --- | --- | --- | ---
@@ -99,9 +101,11 @@ Accuracy: 	| 78.86%		| 76.58%		| 2.28%
 Recall: 	| 48.48%		| 49.69%		| -1.20%
 Precision: 	| 64.00%		| 69.30%		| -5.30%
 F1: 		| 55.17%		| 57.88%		| -2.70%
+![confusion matrix: logistic](./images/confusion_matrix_lr.png)
 
-Based on the above, I infer that:
-* The random forest models are more likely to overfit the training data than the logistical regression models based on differences in evaluation metrics on the test data vs. training data (particularly for recall, precision, F1, but also for accuracy).
+## Overall
+Based on the above evaluation metrics, I infer that:
+* The random forest models were more accurate for the training data but were more likely to overfit the training data than the logistical regression models based on differences in evaluation metrics on the test data vs. training data (particularly for recall, precision, F1, but also for accuracy).
 * For logistic regression, tuning of the hyperparameters C, class weight, and solver did not impact model performance.
 
 As a result, I chose the hyperparameter-tuned logistic regression model. Interestingly, hyperparameter tuning in Iteration 3 did not change any of the evaluation metrics for the logistic regression classifier compared with Iteration 1, though it did slightly improve metrics for the random forest classifier.
